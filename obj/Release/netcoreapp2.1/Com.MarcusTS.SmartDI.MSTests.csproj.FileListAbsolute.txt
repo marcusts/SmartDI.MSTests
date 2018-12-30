@@ -1,6 +1,3 @@
-D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.csproj.CoreCompileInputs.cache
-D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.AssemblyInfoInputs.cache
-D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.AssemblyInfo.cs
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -16,7 +13,10 @@ D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.pdb
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.dll
 D:\Dev\MtsShared\SmartDI.MSTests\bin\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.pdb
+D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.csprojAssemblyReference.cache
+D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.csproj.CoreCompileInputs.cache
+D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.AssemblyInfoInputs.cache
+D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.AssemblyInfo.cs
 D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.csproj.CopyComplete
 D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.dll
 D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.pdb
-D:\Dev\MtsShared\SmartDI.MSTests\obj\Release\netcoreapp2.1\Com.MarcusTS.SmartDI.MSTests.csprojAssemblyReference.cache
