@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SmartDI\Com.MarcusTS.SmartDI.csproj" />
+    <ProjectReference Include="..\SmartDI\Com.MarcusTS.SmartDI.csproj" />
   </ItemGroup>
 
 </Project>
