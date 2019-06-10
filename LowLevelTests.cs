@@ -1,22 +1,42 @@
-﻿namespace Com.MarcusTS.SmartDI.MSTests
+﻿// *********************************************************************************
+// <copyright file=LowLevelTests.cs company="Marcus Technical Services, Inc.">
+//     Copyright @2019 Marcus Technical Services, Inc.
+// </copyright>
+//
+// MIT License
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+// *********************************************************************************
+
+namespace Com.MarcusTS.SmartDI.MSTests
 {
+   using Com.MarcusTS.SharedUtils.Utils;
+   using Com.MarcusTS.SmartDI.MSTests.LowLevelTestClasses;
+   using Microsoft.VisualStudio.TestTools.UnitTesting;
    using System;
    using System.Collections.Generic;
    using System.Linq;
-   using LowLevelTestClasses;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
-   using SharedUtils.Utils;
 
    [TestClass]
    public class LowLevelTests : IDisposable
    {
-      #region Private Fields
-
       private readonly ISmartDIContainerForUnitTesting _container = new SmartDIContainerForUnitTesting();
-
-      #endregion Private Fields
-
-      #region Public Methods
 
       public void Dispose()
       {
@@ -64,7 +84,7 @@
          _container.RegisterTypeAsInterface<SimpleClass>(typeof(IAmSimple));
          _container.RegisterTypeAsInterface<AnotherSimpleClass>(typeof(IAmSimple));
          AssertContainerHasThrownArgumentException(
-                                                   "ThrowOnMultipleRegisteredTypesForOneResolvedType is true but no error was thrown for registering two master classes for the same resolved interface.");
+            "ThrowOnMultipleRegisteredTypesForOneResolvedType is true but no error was thrown for registering two master classes for the same resolved interface.");
 
          _container.ResetUnitTestContainer();
 
@@ -90,13 +110,13 @@
 
          // 1. SetThrowOnAttemptToAssignDuplicateContractSubType to false (default), and try to replace a resolution contract; this will succeed
          _container.ExposedThrowOnAttemptToAssignDuplicateContractSubType = false;
-         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore,      null, false, typeof(IAmSimple));
+         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, null, false, typeof(IAmSimple));
          _container.RegisterType<SimpleClass>(StorageRules.GlobalSingleton, null, false, typeof(IAmSimple));
          AssertContainerHasRaisedNoExceptions();
 
          // 2. SetThrowOnAttemptToAssignDuplicateContractSubType to true, which should throw an error under the same scenario thatn just succeeded above.
          _container.ExposedThrowOnAttemptToAssignDuplicateContractSubType = true;
-         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore,      null, false, typeof(IAmSimple));
+         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, null, false, typeof(IAmSimple));
          _container.RegisterType<SimpleClass>(StorageRules.GlobalSingleton, null, false, typeof(IAmSimple));
          AssertContainerHasThrownArgumentException("With ThrowOnAttemptToAssignDuplicateContractSubType true, was allowed to over-write a sub contract.");
 
@@ -106,7 +126,7 @@
          _container.ResetUnitTestContainer();
 
          // Should work
-         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel, () => new SimpleClass {HasBeenSet = true});
+         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel, () => new SimpleClass { HasBeenSet = true });
          var simpleClassWithInstantiator = _container.Resolve<SimpleClass>();
 
          Assert.IsTrue(simpleClassWithInstantiator != null && simpleClassWithInstantiator.HasBeenSet,
@@ -115,7 +135,7 @@
          _container.ResetUnitTestContainer();
 
          // Mis-matched type and constructor should fail --
-         _container.RegisterType<ParentClass>(StorageRules.AnyAccessLevel, () => new SimpleClass {HasBeenSet = true});
+         _container.RegisterType<ParentClass>(StorageRules.AnyAccessLevel, () => new SimpleClass { HasBeenSet = true });
          var parentClassWithInstantiator = _container.Resolve<ParentClass>();
 
          AssertContainerHasThrownArgumentException("Consumed an illegal constructor for the wrong class type");
@@ -185,11 +205,11 @@
          // Now use the conflict resolver to make the choice -- forbid the DerivedSimpleClass
          simple =
             _container.Resolve<IAmSimple>
-               (
-                StorageRules.AnyAccessLevel,
-                null,
-                ForbidSpecificClass<DerivedSimpleClass>
-               );
+            (
+               StorageRules.AnyAccessLevel,
+               null,
+               ForbidSpecificClass<DerivedSimpleClass>
+            );
 
          Assert.IsFalse(simple is DerivedSimpleClass, "Was given the a type that was forbidden by the resolver.");
       }
@@ -228,7 +248,7 @@
       public void TestMultipleRegistrations()
       {
          // Quick-register two interfaces simultaneously
-         _container.RegisterType<SimpleClass>(typesToCastAs: new[] {typeof(IAmSimple), typeof(IAmReallySimple)});
+         _container.RegisterType<SimpleClass>(typesToCastAs: new[] { typeof(IAmSimple), typeof(IAmReallySimple) });
 
          // Now resolve each interface
          var iAmSimpleVersionOfSimpleClass = _container.Resolve<IAmSimple>();
@@ -246,10 +266,38 @@
          _container.ResetUnitTestContainer();
 
          // Now try an illegal registration of an interface that doesn't translate to the simple class -- IAmParent is ILLEGAL.
-         _container.RegisterType<SimpleClass>(typesToCastAs: new[] {typeof(IAmSimple), typeof(IAmAParent)});
+         _container.RegisterType<SimpleClass>(typesToCastAs: new[] { typeof(IAmSimple), typeof(IAmAParent) });
 
          // An exception should be thrown
          AssertContainerHasThrownArgumentException("Tried to register an illegal interface return type");
+      }
+
+      /// <summary>
+      ///    2019-01-06 - This test is failing with a legal result; it appears to be a bug with deriving another unit test.
+      /// </summary>
+      [TestMethod]
+      public void TestRegisterAndResolve()
+      {
+         var simple1 = _container.RegisterAndResolveAsInterface<SimpleClass, IAmSimple>();
+         Assert.IsTrue(simple1.IsNotAnEqualObjectTo(default(SimpleClass)));
+
+         _container.ResetUnitTestContainer();
+
+         var simple2 = _container.RegisterAndResolveAsInterface<DerivedSimpleClass, IDerivedSimpleClass>(StorageRules.DoNotStore);
+         Assert.IsTrue(simple2.IsNotAnEqualObjectTo(default(DerivedSimpleClass)));
+
+         _container.ResetUnitTestContainer();
+
+         var simple3 = _container.RegisterAndResolve<SimpleClass>();
+         Assert.IsTrue(simple3.IsNotAnEqualObjectTo(default(SimpleClass)));
+
+         _container.ResetUnitTestContainer();
+
+         // Create a few parameters, then register and resolve the third one, which relies on the other two.  This should succeed.
+         _container.RegisterTypeAsInterface<ServiceOne>(typeof(IServiceOne));
+         _container.RegisterTypeAsInterface<ServiceTwo>(typeof(IServiceTwo));
+         var serviceThreeInterface = _container.RegisterAndResolveAsInterface<ServiceThree, IServiceThree>(StorageRules.DoNotStore);
+         AssertContainerHasRaisedNoExceptions();
       }
 
       [TestMethod]
@@ -257,7 +305,7 @@
       {
          // If registered with "any access level" storage rule, can resolve for any storage rule.
 
-         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel);
+         _container.RegisterType<SimpleClass>();
          var parent = new ParentClass();
 
          var testClass = _container.Resolve<SimpleClass>(StorageRules.DoNotStore);
@@ -311,7 +359,7 @@
          _container.ClearUnitTestExceptions();
 
          // Should succeed
-         testClass = _container.Resolve<SimpleClass>(StorageRules.AnyAccessLevel);
+         testClass = _container.Resolve<SimpleClass>();
          AssertContainerHasRaisedNoExceptions();
 
          _container.ResetUnitTestContainer();
@@ -331,7 +379,7 @@
          _container.ClearUnitTestExceptions();
 
          // Should succeed
-         testClass = _container.Resolve<SimpleClass>(StorageRules.AnyAccessLevel);
+         testClass = _container.Resolve<SimpleClass>();
          AssertContainerHasRaisedNoExceptions();
 
          _container.ResetUnitTestContainer();
@@ -342,9 +390,9 @@
          // These three statements should now be true
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.ContainsKey(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Keys
-                                 .Contains(typeof(SimpleClass)));
+                          .Contains(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Values
-                                 .Count == 1);
+                          .Count == 1);
 
          // Now try to register again using a different constructor for the same type.
          _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, SimpleClass_Static.CreateSimpleInstance);
@@ -352,9 +400,9 @@
          // Retest; the conditions should not change, because we cannot legally add two constructors for the same type and storage rule.
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.ContainsKey(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Keys
-                                 .Contains(typeof(SimpleClass)));
+                          .Contains(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Values
-                                 .Count == 1);
+                          .Count == 1);
          // NOTE that no error is issued; the new rule over-writes the old one.
 
          // The bound storage rules are complex, so require specialized testing
@@ -365,7 +413,7 @@
          _container.RegisterType<SimpleClass>(StorageRules.SharedDependencyBetweenInstances);
 
          // Attempt to resolve without a parent
-         testClass = _container.Resolve<SimpleClass>(StorageRules.AnyAccessLevel);
+         testClass = _container.Resolve<SimpleClass>();
          AssertContainerHasThrownArgumentException("Was allowed to resolve a shared instance without a bound parent");
 
          _container.ClearUnitTestExceptions();
@@ -424,7 +472,7 @@
       public void TestUnregistration()
       {
          // ALL ACCESS
-         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel);
+         _container.RegisterType<SimpleClass>();
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.IsNotEmpty(),
                        "Failed to register a type for any access level.");
          _container.UnregisterTypeContracts<SimpleClass>();
@@ -454,12 +502,7 @@
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.IsEmpty(), "Failed to unregister a global singleton.");
       }
 
-      #endregion Public Methods
-
-      #region Private Methods
-
-      private static IConflictResolution ForbidSpecificClass<T>(
-         IDictionary<Type, ITimeStampedCreatorAndStorageRules> registrations)
+      private static IConflictResolution ForbidSpecificClass<T>(IDictionary<Type, ITimeStampedCreatorAndStorageRules> registrations)
       {
          // Find any registration where the key (the main class that was registered and that is being constructed)
          //    is *not* the forbidden one
@@ -471,10 +514,10 @@
          }
 
          return new ConflictResolution
-                {
-                   MasterType                = legalValues.First().Key,
-                   TypeToCastWithStorageRule = legalValues.First().Value.CreatorsAndStorageRules.First()
-                };
+         {
+            MasterType                = legalValues.First().Key,
+            TypeToCastWithStorageRule = legalValues.First().Value.CreatorsAndStorageRules.First()
+         };
       }
 
       private void AssertContainerHasRaisedNoExceptions()
@@ -537,7 +580,5 @@
          // Also must be able to fetch the class
          Assert.IsNotNull(classAsBaseClass, "Failed to acquire a properly registered base class.");
       }
-
-      #endregion Private Methods
    }
 }
