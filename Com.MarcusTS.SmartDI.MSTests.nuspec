@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Com.MarcusTS.SmartDI.MSTests</id>
+    <version>1.0.1</version>
+    <title>Smart DI Unit Tests</title>
+    <authors>Stephen Marcus</authors>
+    <owners>Marcus Technical Services, Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+     <license type="file">license.txt</license>
+     <description>
+        Unit tests supporting the Smart DI library.
+    </description>
+    <copyright>Copyright 2019 Marcus Technical Services, Inc. (https://www.marcusts.com)</copyright>
+    <tags>c# ioc di c-sharp smart-di-container smart-di</tags>
+  </metadata>
+</package>

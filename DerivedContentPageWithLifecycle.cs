@@ -1,5 +1,5 @@
 ﻿// *********************************************************************************
-// <copyright file=Complex.cs company="Marcus Technical Services, Inc.">
+// <copyright file=DerivedContentPageWithLifecycle.cs company="Marcus Technical Services, Inc.">
 //     Copyright @2019 Marcus Technical Services, Inc.
 // </copyright>
 //
@@ -24,62 +24,23 @@
 // SOFTWARE.
 // *********************************************************************************
 
-namespace Com.MarcusTS.SmartDI.MSTests.LowLevelTestClasses
+namespace Com.MarcusTS.SmartDI.MSTests
 {
-   public interface IRecursiveService : IServiceOne
-   {
-   }
+   using Com.MarcusTS.LifecycleAware.Views.Pages;
 
-   public interface IServiceOne
+   /// <summary>
+   ///    Class DerivedContentPageWithLifecycle.
+   ///    Implements the <see cref="Com.MarcusTS.LifecycleAware.Views.Pages.ContentPageWithLifecycle" />
+   /// </summary>
+   /// <seealso cref="Com.MarcusTS.LifecycleAware.Views.Pages.ContentPageWithLifecycle" />
+   public class DerivedContentPageWithLifecycle : ContentPageWithLifecycle
    {
-   }
-
-   public interface IServiceThree
-   {
-   }
-
-   public interface IServiceTwo
-   {
-   }
-
-   public class RecursiveService : ServiceOne, IRecursiveService
-   {
-      private readonly IServiceOne _serviceOne;
-
-      public RecursiveService(IServiceOne serviceOne)
+      /// <summary>
+      ///    Calls the force disappearing.
+      /// </summary>
+      public void CallForceDisappearing()
       {
-         _serviceOne = serviceOne;
-      }
-   }
-
-   public class ServiceOne : IServiceOne
-   {
-   }
-
-   public class ServiceThree : IServiceThree
-   {
-      private readonly IServiceOne _serviceOne;
-
-      private readonly IServiceTwo _serviceTwo;
-
-      public ServiceThree
-      (
-         IServiceOne serviceOne,
-         IServiceTwo serviceTwo
-      )
-      {
-         _serviceOne = serviceOne;
-         _serviceTwo = serviceTwo;
-      }
-   }
-
-   public class ServiceTwo : IServiceTwo
-   {
-      private readonly IServiceOne _serviceOne;
-
-      public ServiceTwo(IServiceOne serviceOne)
-      {
-         _serviceOne = serviceOne;
+         ForceDisappearing();
       }
    }
 }

@@ -27,35 +27,54 @@
 namespace Com.MarcusTS.SmartDI.MSTests
 {
    using Com.MarcusTS.SharedUtils.Utils;
-   using Com.MarcusTS.SmartDI.MSTests.LowLevelTestClasses;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
    using System;
    using System.Collections.Generic;
    using System.Linq;
 
+   /// <summary>
+   ///    Defines test class LowLevelTests.
+   ///    Implements the <see cref="System.IDisposable" />
+   /// </summary>
+   /// <seealso cref="System.IDisposable" />
    [TestClass]
    public class LowLevelTests : IDisposable
    {
+      /// <summary>
+      ///    The container
+      /// </summary>
       private readonly ISmartDIContainerForUnitTesting _container = new SmartDIContainerForUnitTesting();
 
+      /// <summary>
+      ///    Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+      /// </summary>
       public void Dispose()
       {
          _container?.Dispose();
          GC.SuppressFinalize(this);
       }
 
+      /// <summary>
+      ///    Sets up each test.
+      /// </summary>
       [TestInitialize]
       public void SetUpEachTest()
       {
          _container.ClearUnitTestExceptions();
       }
 
+      /// <summary>
+      ///    Tears down each test.
+      /// </summary>
       [TestCleanup]
       public void TearDownEachTest()
       {
          _container.ResetUnitTestContainer();
       }
 
+      /// <summary>
+      ///    Defines the test method TestArguments.
+      /// </summary>
       [TestMethod]
       public void TestArguments()
       {
@@ -141,6 +160,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          AssertContainerHasThrownArgumentException("Consumed an illegal constructor for the wrong class type");
       }
 
+      /// <summary>
+      ///    Defines the test method TestComplexConstructorsAndRecursion.
+      /// </summary>
       [TestMethod]
       public void TestComplexConstructorsAndRecursion()
       {
@@ -186,6 +208,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          AssertContainerHasThrownArgumentException("Was allowed to resolve a service that is bound to a class that derives it.");
       }
 
+      /// <summary>
+      ///    Defines the test method TestConflictResolution.
+      /// </summary>
       [TestMethod]
       public void TestConflictResolution()
       {
@@ -214,6 +239,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          Assert.IsFalse(simple is DerivedSimpleClass, "Was given the a type that was forbidden by the resolver.");
       }
 
+      /// <summary>
+      ///    Defines the test method TestGlobalSingletons.
+      /// </summary>
       [TestMethod]
       public void TestGlobalSingletons()
       {
@@ -244,6 +272,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          Assert.IsNotNull(classToCheck, "Failed to remove a null global singleton after resolve.");
       }
 
+      /// <summary>
+      ///    Defines the test method TestMultipleRegistrations.
+      /// </summary>
       [TestMethod]
       public void TestMultipleRegistrations()
       {
@@ -300,6 +331,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          AssertContainerHasRaisedNoExceptions();
       }
 
+      /// <summary>
+      ///    Defines the test method TestStorageRules.
+      /// </summary>
       [TestMethod]
       public void TestStorageRules()
       {
@@ -468,6 +502,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          AssertContainerHasThrownArgumentException("Cannot bind a shared a instance to its own linked parent");
       }
 
+      /// <summary>
+      ///    Defines the test method TestUnregistration.
+      /// </summary>
       [TestMethod]
       public void TestUnregistration()
       {
@@ -502,6 +539,12 @@ namespace Com.MarcusTS.SmartDI.MSTests
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.IsEmpty(), "Failed to unregister a global singleton.");
       }
 
+      /// <summary>
+      ///    Forbids the specific class.
+      /// </summary>
+      /// <typeparam name="T"></typeparam>
+      /// <param name="registrations">The registrations.</param>
+      /// <returns>IConflictResolution.</returns>
       private static IConflictResolution ForbidSpecificClass<T>(IDictionary<Type, ITimeStampedCreatorAndStorageRules> registrations)
       {
          // Find any registration where the key (the main class that was registered and that is being constructed)
@@ -520,6 +563,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          };
       }
 
+      /// <summary>
+      ///    Asserts the container has raised no exceptions.
+      /// </summary>
       private void AssertContainerHasRaisedNoExceptions()
       {
          Assert.IsTrue(_container.IsArgumentException.IsEmpty(),
@@ -528,16 +574,29 @@ namespace Com.MarcusTS.SmartDI.MSTests
                        "Container threw an unexpected operation exception ->" + _container.IsOperationException + "<-");
       }
 
+      /// <summary>
+      ///    Asserts the container has thrown argument exception.
+      /// </summary>
+      /// <param name="message">The message.</param>
       private void AssertContainerHasThrownArgumentException(string message)
       {
          Assert.IsTrue(_container.IsArgumentException.IsNotEmpty(), message);
       }
 
+      /// <summary>
+      ///    Asserts the container has thrown operation exception.
+      /// </summary>
+      /// <param name="message">The message.</param>
       private void AssertContainerHasThrownOperationException(string message)
       {
          Assert.IsTrue(_container.IsOperationException.IsNotEmpty(), message);
       }
 
+      /// <summary>
+      ///    Globals the type of the singleton test by generic.
+      /// </summary>
+      /// <typeparam name="InterfaceT">The type of the interface t.</typeparam>
+      /// <typeparam name="TypeT">The type of the type t.</typeparam>
       private void GlobalSingletonTestByGenericType<InterfaceT, TypeT>()
          where TypeT : class, InterfaceT
          where InterfaceT : class

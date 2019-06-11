@@ -4,6 +4,20 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <Version>1.0.1</Version>
+
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <Company>Marcus Technical Services, Inc.</Company>
+
+    <Product>Smart DI Tests</Product>
+
+    <Copyright>Copyright @2019 Marcus Technical Services, Inc.</Copyright>
+
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+
+    <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,14 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Com.MarcusTS.SharedUtils" Version="1.0.7" />
+    <PackageReference Include="Com.MarcusTS.LifecycleAware" Version="1.0.12" />
+    <PackageReference Include="Com.MarcusTS.SharedUtils" Version="1.0.10" />
+    <PackageReference Include="Com.MarcusTS.SmartDI" Version="1.0.14" />
+    <PackageReference Include="Com.MarcusTS.SmartDI.LifecycleAware" Version="1.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SmartDI\Com.MarcusTS.SmartDI.csproj" />
   </ItemGroup>
 
 </Project>

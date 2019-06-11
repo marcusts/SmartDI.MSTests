@@ -24,12 +24,20 @@
 // SOFTWARE.
 // *********************************************************************************
 
-namespace Com.MarcusTS.SmartDI.MSTests.LowLevelTestClasses
+namespace Com.MarcusTS.SmartDI.MSTests
 {
+   /// <summary>
+   ///    Interface IAmAParent
+   /// </summary>
    public interface IAmAParent
    {
    }
 
+   /// <summary>
+   ///    Class ParentClass.
+   ///    Implements the <see cref="IAmAParent" />
+   /// </summary>
+   /// <seealso cref="IAmAParent" />
    public class ParentClass : IAmAParent
    {
    }

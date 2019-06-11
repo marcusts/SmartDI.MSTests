@@ -1,5 +1,5 @@
 ﻿// *********************************************************************************
-// <copyright file=Simple.cs company="Marcus Technical Services, Inc.">
+// <copyright file=DerivedContentViewWithLifecycle.cs company="Marcus Technical Services, Inc.">
 //     Copyright @2019 Marcus Technical Services, Inc.
 // </copyright>
 //
@@ -24,38 +24,23 @@
 // SOFTWARE.
 // *********************************************************************************
 
-namespace Com.MarcusTS.SmartDI.MSTests.LowLevelTestClasses
+namespace Com.MarcusTS.SmartDI.MSTests
 {
-   public interface IAmReallySimple
-   {
-   }
+   using Com.MarcusTS.LifecycleAware.Views.SubViews;
 
-   public interface IAmSimple
+   /// <summary>
+   ///    Class DerivedContentViewWithLifecycle.
+   ///    Implements the <see cref="Com.MarcusTS.LifecycleAware.Views.SubViews.ContentViewWithLifecycle" />
+   /// </summary>
+   /// <seealso cref="Com.MarcusTS.LifecycleAware.Views.SubViews.ContentViewWithLifecycle" />
+   public class DerivedContentViewWithLifecycle : ContentViewWithLifecycle
    {
-   }
-
-   public interface IDerivedSimpleClass : IAmSimple
-   {
-   }
-
-   public static class SimpleClass_Static
-   {
-      public static IAmSimple CreateSimpleInstance()
+      /// <summary>
+      ///    Calls the force disappearing.
+      /// </summary>
+      public void CallForceDisappearing()
       {
-         return new SimpleClass();
+         ForceDisappearing();
       }
-   }
-
-   public class AnotherSimpleClass : IAmSimple
-   {
-   }
-
-   public class DerivedSimpleClass : SimpleClass, IDerivedSimpleClass
-   {
-   }
-
-   public class SimpleClass : IAmSimple, IAmReallySimple
-   {
-      public bool HasBeenSet { get; set; }
    }
 }
