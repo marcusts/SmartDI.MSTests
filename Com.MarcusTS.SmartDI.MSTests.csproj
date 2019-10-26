@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
@@ -15,12 +15,18 @@
 
     <Copyright>Copyright @2019 Marcus Technical Services, Inc.</Copyright>
 
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
 
-    <FileVersion>1.0.2.0</FileVersion>
+    <FileVersion>1.0.3.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>M:\MyDocs\Dev\MtsShared\SmartDI.LifecycleAware.MSTests\Com.MarcusTS.SmartDI.MSTests.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DocumentationFile>M:\MyDocs\Dev\MtsShared\SmartDI.LifecycleAware.MSTests\Com.MarcusTS.SmartDI.MSTests.xml</DocumentationFile>
   </PropertyGroup>
 
