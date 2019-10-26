@@ -1,52 +1,52 @@
-﻿// *********************************************************************************
-// <copyright file=LowLevelTests.cs company="Marcus Technical Services, Inc.">
-//     Copyright @2019 Marcus Technical Services, Inc.
-// </copyright>
+﻿#region License
+
+// Copyright (c) 2019  Marcus Technical Services, Inc. <marcus@marcusts.com>
 //
-// MIT License
+// This file, LowLevelTests.cs, is a part of a program called Com.MarcusTS.SmartDI.MSTests.
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+// Com.MarcusTS.SmartDI.MSTests is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
+// Permission to use, copy, modify, and/or distribute this software
+// for any purpose with or without fee is hereby granted, provided
+// that the above copyright notice and this permission notice appear
+// in all copies.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-// *********************************************************************************
+// Com.MarcusTS.SmartDI.MSTests is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// For the complete GNU General Public License,
+// see <http://www.gnu.org/licenses/>.
+
+#endregion
 
 namespace Com.MarcusTS.SmartDI.MSTests
 {
-   using Com.MarcusTS.SharedUtils.Utils;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
+   using SharedUtils.Utils;
    using System;
    using System.Collections.Generic;
    using System.Linq;
 
    /// <summary>
-   ///    Defines test class LowLevelTests.
-   ///    Implements the <see cref="System.IDisposable" />
+   /// Defines test class LowLevelTests.
+   /// Implements the <see cref="System.IDisposable" />
    /// </summary>
    /// <seealso cref="System.IDisposable" />
    [TestClass]
    public class LowLevelTests : IDisposable
    {
       /// <summary>
-      ///    The container
+      /// The container
       /// </summary>
       private readonly ISmartDIContainerForUnitTesting _container = new SmartDIContainerForUnitTesting();
 
       /// <summary>
-      ///    Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+      /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
       /// </summary>
       public void Dispose()
       {
@@ -55,7 +55,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Sets up each test.
+      /// Sets up each test.
       /// </summary>
       [TestInitialize]
       public void SetUpEachTest()
@@ -64,7 +64,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Tears down each test.
+      /// Tears down each test.
       /// </summary>
       [TestCleanup]
       public void TearDownEachTest()
@@ -73,14 +73,15 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Defines the test method TestArguments.
+      /// Defines the test method TestArguments.
       /// </summary>
       [TestMethod]
       public void TestArguments()
       {
          // Attempt to register an interface as a base type.  Can also use an abstract type, etc.
          _container.RegisterType<IAmSimple>(StorageRules.DoNotStore);
-         AssertContainerHasThrownArgumentException("Illegally assigned an interface as a base class type.  Interfaces cannot be instantiated.");
+         AssertContainerHasThrownArgumentException(
+            "Illegally assigned an interface as a base class type.  Interfaces cannot be instantiated.");
 
          _container.ResetUnitTestContainer();
 
@@ -117,7 +118,8 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // 4. Now reverse our decision; throw multiple resolutions
          _container.ExposedThrowOnMultipleRegisteredTypesForOneResolvedType = true;
          _container.Resolve<IAmSimple>();
-         AssertContainerHasThrownArgumentException("ThrowOnMultipleRegisteredTypesForOneResolvedType was true on registration but false on resolve, yet we were able to resolve without error.");
+         AssertContainerHasThrownArgumentException(
+            "ThrowOnMultipleRegisteredTypesForOneResolvedType was true on registration but false on resolve, yet we were able to resolve without error.");
 
          _container.ResetUnitTestContainer();
 
@@ -129,15 +131,16 @@ namespace Com.MarcusTS.SmartDI.MSTests
 
          // 1. SetThrowOnAttemptToAssignDuplicateContractSubType to false (default), and try to replace a resolution contract; this will succeed
          _container.ExposedThrowOnAttemptToAssignDuplicateContractSubType = false;
-         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, null, false, typeof(IAmSimple));
+         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore,      null, false, typeof(IAmSimple));
          _container.RegisterType<SimpleClass>(StorageRules.GlobalSingleton, null, false, typeof(IAmSimple));
          AssertContainerHasRaisedNoExceptions();
 
          // 2. SetThrowOnAttemptToAssignDuplicateContractSubType to true, which should throw an error under the same scenario thatn just succeeded above.
          _container.ExposedThrowOnAttemptToAssignDuplicateContractSubType = true;
-         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, null, false, typeof(IAmSimple));
+         _container.RegisterType<SimpleClass>(StorageRules.DoNotStore,      null, false, typeof(IAmSimple));
          _container.RegisterType<SimpleClass>(StorageRules.GlobalSingleton, null, false, typeof(IAmSimple));
-         AssertContainerHasThrownArgumentException("With ThrowOnAttemptToAssignDuplicateContractSubType true, was allowed to over-write a sub contract.");
+         AssertContainerHasThrownArgumentException(
+            "With ThrowOnAttemptToAssignDuplicateContractSubType true, was allowed to over-write a sub contract.");
 
          /////////////////////////////////////////////////
          // Provided instantiators
@@ -145,7 +148,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.ResetUnitTestContainer();
 
          // Should work
-         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel, () => new SimpleClass { HasBeenSet = true });
+         _container.RegisterType<SimpleClass>(StorageRules.AnyAccessLevel, () => new SimpleClass {HasBeenSet = true});
          var simpleClassWithInstantiator = _container.Resolve<SimpleClass>();
 
          Assert.IsTrue(simpleClassWithInstantiator != null && simpleClassWithInstantiator.HasBeenSet,
@@ -154,14 +157,14 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.ResetUnitTestContainer();
 
          // Mis-matched type and constructor should fail --
-         _container.RegisterType<ParentClass>(StorageRules.AnyAccessLevel, () => new SimpleClass { HasBeenSet = true });
+         _container.RegisterType<ParentClass>(StorageRules.AnyAccessLevel, () => new SimpleClass {HasBeenSet = true});
          var parentClassWithInstantiator = _container.Resolve<ParentClass>();
 
          AssertContainerHasThrownArgumentException("Consumed an illegal constructor for the wrong class type");
       }
 
       /// <summary>
-      ///    Defines the test method TestComplexConstructorsAndRecursion.
+      /// Defines the test method TestComplexConstructorsAndRecursion.
       /// </summary>
       [TestMethod]
       public void TestComplexConstructorsAndRecursion()
@@ -176,7 +179,8 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.RegisterTypeAsInterface<ServiceThree>(typeof(IServiceThree));
          var serviceThreeInterface = _container.Resolve<IServiceThree>();
 
-         AssertContainerHasThrownArgumentException("Was allowed to resolve a complex class without first registering its parameters.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve a complex class without first registering its parameters.");
 
          _container.ResetUnitTestContainer();
 
@@ -205,11 +209,12 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // If  we resolve as a bound dependency using the recursive service, that should be illegal
          var boundService =
             _container.Resolve<ServiceOne>(StorageRules.SharedDependencyBetweenInstances, recursiveService);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve a service that is bound to a class that derives it.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve a service that is bound to a class that derives it.");
       }
 
       /// <summary>
-      ///    Defines the test method TestConflictResolution.
+      /// Defines the test method TestConflictResolution.
       /// </summary>
       [TestMethod]
       public void TestConflictResolution()
@@ -240,7 +245,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Defines the test method TestGlobalSingletons.
+      /// Defines the test method TestGlobalSingletons.
       /// </summary>
       [TestMethod]
       public void TestGlobalSingletons()
@@ -273,13 +278,13 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Defines the test method TestMultipleRegistrations.
+      /// Defines the test method TestMultipleRegistrations.
       /// </summary>
       [TestMethod]
       public void TestMultipleRegistrations()
       {
          // Quick-register two interfaces simultaneously
-         _container.RegisterType<SimpleClass>(typesToCastAs: new[] { typeof(IAmSimple), typeof(IAmReallySimple) });
+         _container.RegisterType<SimpleClass>(typesToCastAs: new[] {typeof(IAmSimple), typeof(IAmReallySimple)});
 
          // Now resolve each interface
          var iAmSimpleVersionOfSimpleClass = _container.Resolve<IAmSimple>();
@@ -297,14 +302,14 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.ResetUnitTestContainer();
 
          // Now try an illegal registration of an interface that doesn't translate to the simple class -- IAmParent is ILLEGAL.
-         _container.RegisterType<SimpleClass>(typesToCastAs: new[] { typeof(IAmSimple), typeof(IAmAParent) });
+         _container.RegisterType<SimpleClass>(typesToCastAs: new[] {typeof(IAmSimple), typeof(IAmAParent)});
 
          // An exception should be thrown
          AssertContainerHasThrownArgumentException("Tried to register an illegal interface return type");
       }
 
       /// <summary>
-      ///    2019-01-06 - This test is failing with a legal result; it appears to be a bug with deriving another unit test.
+      /// 2019-01-06 - This test is failing with a legal result; it appears to be a bug with deriving another unit test.
       /// </summary>
       [TestMethod]
       public void TestRegisterAndResolve()
@@ -314,7 +319,8 @@ namespace Com.MarcusTS.SmartDI.MSTests
 
          _container.ResetUnitTestContainer();
 
-         var simple2 = _container.RegisterAndResolveAsInterface<DerivedSimpleClass, IDerivedSimpleClass>(StorageRules.DoNotStore);
+         var simple2 =
+            _container.RegisterAndResolveAsInterface<DerivedSimpleClass, IDerivedSimpleClass>(StorageRules.DoNotStore);
          Assert.IsTrue(simple2.IsNotAnEqualObjectTo(default(DerivedSimpleClass)));
 
          _container.ResetUnitTestContainer();
@@ -327,12 +333,13 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // Create a few parameters, then register and resolve the third one, which relies on the other two.  This should succeed.
          _container.RegisterTypeAsInterface<ServiceOne>(typeof(IServiceOne));
          _container.RegisterTypeAsInterface<ServiceTwo>(typeof(IServiceTwo));
-         var serviceThreeInterface = _container.RegisterAndResolveAsInterface<ServiceThree, IServiceThree>(StorageRules.DoNotStore);
+         var serviceThreeInterface =
+            _container.RegisterAndResolveAsInterface<ServiceThree, IServiceThree>(StorageRules.DoNotStore);
          AssertContainerHasRaisedNoExceptions();
       }
 
       /// <summary>
-      ///    Defines the test method TestStorageRules.
+      /// Defines the test method TestStorageRules.
       /// </summary>
       [TestMethod]
       public void TestStorageRules()
@@ -363,12 +370,14 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // These tests require that we pass in a bound instance
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.DoNotStore, parent);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'shared' to 'do not store' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'shared' to 'do not store' illegally.");
 
          _container.ClearUnitTestExceptions();
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.GlobalSingleton, parent);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'shared' to 'global singleton' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'shared' to 'global singleton' illegally.");
 
          _container.ClearUnitTestExceptions();
 
@@ -383,12 +392,14 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.RegisterType<SimpleClass>(StorageRules.GlobalSingleton);
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.DoNotStore);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'global singleton' to 'do not store' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'global singleton' to 'do not store' illegally.");
 
          _container.ClearUnitTestExceptions();
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.SharedDependencyBetweenInstances, parent);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'global singleton' to 'shared' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'global singleton' to 'shared' illegally.");
 
          _container.ClearUnitTestExceptions();
 
@@ -403,12 +414,14 @@ namespace Com.MarcusTS.SmartDI.MSTests
          _container.RegisterType<SimpleClass>(StorageRules.DoNotStore);
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.GlobalSingleton);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'do not store' to 'global singleton' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'do not store' to 'global singleton' illegally.");
 
          _container.ClearUnitTestExceptions();
 
          testClass = _container.Resolve<SimpleClass>(StorageRules.SharedDependencyBetweenInstances, parent);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve by coercing from 'do not store' to 'shared' illegally.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve by coercing from 'do not store' to 'shared' illegally.");
 
          _container.ClearUnitTestExceptions();
 
@@ -424,9 +437,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // These three statements should now be true
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.ContainsKey(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Keys
-                          .Contains(typeof(SimpleClass)));
+                                 .Contains(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Values
-                          .Count == 1);
+                                 .Count == 1);
 
          // Now try to register again using a different constructor for the same type.
          _container.RegisterType<SimpleClass>(StorageRules.DoNotStore, SimpleClass_Static.CreateSimpleInstance);
@@ -434,9 +447,10 @@ namespace Com.MarcusTS.SmartDI.MSTests
          // Retest; the conditions should not change, because we cannot legally add two constructors for the same type and storage rule.
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts.ContainsKey(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Keys
-                          .Contains(typeof(SimpleClass)));
+                                 .Contains(typeof(SimpleClass)));
          Assert.IsTrue(_container.ExposedRegisteredTypeContracts[typeof(SimpleClass)].CreatorsAndStorageRules.Values
-                          .Count == 1);
+                                 .Count == 1);
+
          // NOTE that no error is issued; the new rule over-writes the old one.
 
          // The bound storage rules are complex, so require specialized testing
@@ -454,7 +468,8 @@ namespace Com.MarcusTS.SmartDI.MSTests
 
          // Attempt to bind a resolved class to itself as its own parent
          testClass = _container.Resolve<SimpleClass>(StorageRules.AnyAccessLevel, testClass);
-         AssertContainerHasThrownArgumentException("Was allowed to resolve a shared instance with the same type as the parent");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to resolve a shared instance with the same type as the parent");
 
          _container.ClearUnitTestExceptions();
 
@@ -503,7 +518,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Defines the test method TestUnregistration.
+      /// Defines the test method TestUnregistration.
       /// </summary>
       [TestMethod]
       public void TestUnregistration()
@@ -523,7 +538,8 @@ namespace Com.MarcusTS.SmartDI.MSTests
 
          // Should fail; the base class is not mentioned, so cannot unregister
          _container.UnregisterTypeContracts<IAmSimple>();
-         AssertContainerHasThrownArgumentException("Was allowed to unregister an interface without mentioning the base class.");
+         AssertContainerHasThrownArgumentException(
+            "Was allowed to unregister an interface without mentioning the base class.");
 
          // Naming the base class clears all sub-members as well as the main type
          _container.UnregisterTypeContracts<SimpleClass>();
@@ -540,12 +556,13 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Forbids the specific class.
+      /// Forbids the specific class.
       /// </summary>
       /// <typeparam name="T"></typeparam>
       /// <param name="registrations">The registrations.</param>
       /// <returns>IConflictResolution.</returns>
-      private static IConflictResolution ForbidSpecificClass<T>(IDictionary<Type, ITimeStampedCreatorAndStorageRules> registrations)
+      private static IConflictResolution ForbidSpecificClass<T>(
+         IDictionary<Type, ITimeStampedCreatorAndStorageRules> registrations)
       {
          // Find any registration where the key (the main class that was registered and that is being constructed)
          //    is *not* the forbidden one
@@ -564,7 +581,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Asserts the container has raised no exceptions.
+      /// Asserts the container has raised no exceptions.
       /// </summary>
       private void AssertContainerHasRaisedNoExceptions()
       {
@@ -575,7 +592,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Asserts the container has thrown argument exception.
+      /// Asserts the container has thrown argument exception.
       /// </summary>
       /// <param name="message">The message.</param>
       private void AssertContainerHasThrownArgumentException(string message)
@@ -584,7 +601,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Asserts the container has thrown operation exception.
+      /// Asserts the container has thrown operation exception.
       /// </summary>
       /// <param name="message">The message.</param>
       private void AssertContainerHasThrownOperationException(string message)
@@ -593,7 +610,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       }
 
       /// <summary>
-      ///    Globals the type of the singleton test by generic.
+      /// Globals the type of the singleton test by generic.
       /// </summary>
       /// <typeparam name="InterfaceT">The type of the interface t.</typeparam>
       /// <typeparam name="TypeT">The type of the type t.</typeparam>
