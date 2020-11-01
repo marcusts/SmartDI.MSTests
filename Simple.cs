@@ -1,49 +1,49 @@
-﻿// *********************************************************************************
-// <copyright file=Simple.cs company="Marcus Technical Services, Inc.">
-//     Copyright @2019 Marcus Technical Services, Inc.
-// </copyright>
+﻿#region License
+
+// Copyright (c) 2019  Marcus Technical Services, Inc. <marcus@marcusts.com>
 //
-// MIT License
+// This file, Simple.cs, is a part of a program called Com.MarcusTS.SmartDI.MSTests.
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+// Com.MarcusTS.SmartDI.MSTests is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
+// Permission to use, copy, modify, and/or distribute this software
+// for any purpose with or without fee is hereby granted, provided
+// that the above copyright notice and this permission notice appear
+// in all copies.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-// *********************************************************************************
+// Com.MarcusTS.SmartDI.MSTests is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// For the complete GNU General Public License,
+// see <http://www.gnu.org/licenses/>.
+
+#endregion
 
 namespace Com.MarcusTS.SmartDI.MSTests
 {
    /// <summary>
-   ///    Interface IAmReallySimple
+   /// Interface IAmReallySimple
    /// </summary>
    public interface IAmReallySimple
    {
    }
 
    /// <summary>
-   ///    Interface IAmSimple
+   /// Interface IAmSimple
    /// </summary>
    public interface IAmSimple
    {
    }
 
    /// <summary>
-   ///    Interface IDerivedSimpleClass
-   ///    Implements the <see cref="IAmSimple" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+   /// Interface IDerivedSimpleClass
+   /// Implements the <see cref="IAmSimple" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
    /// </summary>
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
    /// <seealso cref="IAmSimple" />
@@ -52,12 +52,12 @@ namespace Com.MarcusTS.SmartDI.MSTests
    }
 
    /// <summary>
-   ///    Class SimpleClass_Static.
+   /// Class SimpleClass_Static.
    /// </summary>
    public static class SimpleClass_Static
    {
       /// <summary>
-      ///    Creates the simple instance.
+      /// Creates the simple instance.
       /// </summary>
       /// <returns>IAmSimple.</returns>
       public static IAmSimple CreateSimpleInstance()
@@ -67,9 +67,9 @@ namespace Com.MarcusTS.SmartDI.MSTests
    }
 
    /// <summary>
-   ///    Class AnotherSimpleClass.
-   ///    Implements the <see cref="IAmSimple" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+   /// Class AnotherSimpleClass.
+   /// Implements the <see cref="IAmSimple" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
    /// </summary>
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
    /// <seealso cref="IAmSimple" />
@@ -78,11 +78,11 @@ namespace Com.MarcusTS.SmartDI.MSTests
    }
 
    /// <summary>
-   ///    Class DerivedSimpleClass.
-   ///    Implements the <see cref="SimpleClass" />
-   ///    Implements the <see cref="IDerivedSimpleClass" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
+   /// Class DerivedSimpleClass.
+   /// Implements the <see cref="SimpleClass" />
+   /// Implements the <see cref="IDerivedSimpleClass" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
    /// </summary>
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
@@ -93,11 +93,11 @@ namespace Com.MarcusTS.SmartDI.MSTests
    }
 
    /// <summary>
-   ///    Class SimpleClass.
-   ///    Implements the <see cref="IAmSimple" />
-   ///    Implements the <see cref="IAmReallySimple" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
-   ///    Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
+   /// Class SimpleClass.
+   /// Implements the <see cref="IAmSimple" />
+   /// Implements the <see cref="IAmReallySimple" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+   /// Implements the <see cref="Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
    /// </summary>
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
    /// <seealso cref="Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
@@ -106,7 +106,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
    public class SimpleClass : IAmSimple, IAmReallySimple
    {
       /// <summary>
-      ///    Gets or sets a value indicating whether this instance has been set.
+      /// Gets or sets a value indicating whether this instance has been set.
       /// </summary>
       /// <value><c>true</c> if this instance has been set; otherwise, <c>false</c>.</value>
       public bool HasBeenSet { get; set; }

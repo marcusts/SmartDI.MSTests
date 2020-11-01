@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Com.MarcusTS.SmartDI.MSTests</name>
+    </assembly>
+    <members>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IRecursiveService">
+            <summary>
+            Interface IRecursiveService
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne">
+            <summary>
+            Interface IServiceOne
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IServiceThree">
+            <summary>
+            Interface IServiceThree
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IServiceTwo">
+            <summary>
+            Interface IServiceTwo
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.RecursiveService">
+            <summary>
+            Class RecursiveService.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceOne" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IRecursiveService" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceOne" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IRecursiveService" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceOne" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IRecursiveService" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceOne" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IRecursiveService" />
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.RecursiveService._serviceOne">
+            <summary>
+            The service one
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.RecursiveService.#ctor(Com.MarcusTS.SmartDI.MSTests.IServiceOne)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Com.MarcusTS.SmartDI.MSTests.RecursiveService" /> class.
+            </summary>
+            <param name="serviceOne">The service one.</param>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.ServiceOne">
+            <summary>
+            Class ServiceOne.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceOne" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.ServiceThree">
+            <summary>
+            Class ServiceThree.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceThree" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceThree" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceThree" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceThree" />
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.ServiceThree._serviceOne">
+            <summary>
+            The service one
+            </summary>
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.ServiceThree._serviceTwo">
+            <summary>
+            The service two
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.ServiceThree.#ctor(Com.MarcusTS.SmartDI.MSTests.IServiceOne,Com.MarcusTS.SmartDI.MSTests.IServiceTwo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceThree" /> class.
+            </summary>
+            <param name="serviceOne">The service one.</param>
+            <param name="serviceTwo">The service two.</param>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.ServiceTwo">
+            <summary>
+            Class ServiceTwo.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceTwo" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceTwo" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceTwo" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IServiceTwo" />
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.ServiceTwo._serviceOne">
+            <summary>
+            The service one
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.ServiceTwo.#ctor(Com.MarcusTS.SmartDI.MSTests.IServiceOne)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Com.MarcusTS.SmartDI.MSTests.ServiceTwo" /> class.
+            </summary>
+            <param name="serviceOne">The service one.</param>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.DerivedContentPageWithLifecycle">
+            <summary>
+            Class DerivedContentPageWithLifecycle.
+            Implements the <see cref="T:Com.MarcusTS.LifecycleAware.Views.Pages.ContentPageWithLifecycle" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.LifecycleAware.Views.Pages.ContentPageWithLifecycle" />
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.DerivedContentPageWithLifecycle.CallForceDisappearing">
+            <summary>
+            Calls the force disappearing.
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.DerivedContentViewWithLifecycle">
+            <summary>
+            Class DerivedContentViewWithLifecycle.
+            Implements the <see cref="T:Com.MarcusTS.LifecycleAware.Views.SubViews.ContentViewWithLifecycle" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.LifecycleAware.Views.SubViews.ContentViewWithLifecycle" />
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.DerivedContentViewWithLifecycle.CallForceDisappearing">
+            <summary>
+            Calls the force disappearing.
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.HighLevelTests">
+            <summary>
+            Defines test class HighLevelTests.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.LowLevelTests" />
+            Implements the <see cref="T:System.IDisposable" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.LowLevelTests" />
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.HighLevelTests._container">
+            <summary>
+            The container
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.HighLevelTests.TestSharedInstanceRemovalAfterParentLosesScope">
+            <summary>
+            Note that we did not test the DerivedContentViewWithLifecycle,
+            as it is identical to the page other than the fact that it derived a different base class.
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.LowLevelTests">
+            <summary>
+            Defines test class LowLevelTests.
+            Implements the <see cref="T:System.IDisposable" />
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:Com.MarcusTS.SmartDI.MSTests.LowLevelTests._container">
+            <summary>
+            The container
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.SetUpEachTest">
+            <summary>
+            Sets up each test.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TearDownEachTest">
+            <summary>
+            Tears down each test.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestArguments">
+            <summary>
+            Defines the test method TestArguments.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestComplexConstructorsAndRecursion">
+            <summary>
+            Defines the test method TestComplexConstructorsAndRecursion.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestConflictResolution">
+            <summary>
+            Defines the test method TestConflictResolution.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestGlobalSingletons">
+            <summary>
+            Defines the test method TestGlobalSingletons.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestMultipleRegistrations">
+            <summary>
+            Defines the test method TestMultipleRegistrations.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestRegisterAndResolve">
+            <summary>
+            2019-01-06 - This test is failing with a legal result; it appears to be a bug with deriving another unit test.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestStorageRules">
+            <summary>
+            Defines the test method TestStorageRules.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.TestUnregistration">
+            <summary>
+            Defines the test method TestUnregistration.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.ForbidSpecificClass``1(System.Collections.Generic.IDictionary{System.Type,Com.MarcusTS.SmartDI.ITimeStampedCreatorAndStorageRules})">
+            <summary>
+            Forbids the specific class.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="registrations">The registrations.</param>
+            <returns>IConflictResolution.</returns>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.AssertContainerHasRaisedNoExceptions">
+            <summary>
+            Asserts the container has raised no exceptions.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.AssertContainerHasThrownArgumentException(System.String)">
+            <summary>
+            Asserts the container has thrown argument exception.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.AssertContainerHasThrownOperationException(System.String)">
+            <summary>
+            Asserts the container has thrown operation exception.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.LowLevelTests.GlobalSingletonTestByGenericType``2">
+            <summary>
+            Globals the type of the singleton test by generic.
+            </summary>
+            <typeparam name="InterfaceT">The type of the interface t.</typeparam>
+            <typeparam name="TypeT">The type of the type t.</typeparam>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IAmAParent">
+            <summary>
+            Interface IAmAParent
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.ParentClass">
+            <summary>
+            Class ParentClass.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmAParent" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmAParent" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmAParent" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmAParent" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IAmReallySimple">
+            <summary>
+            Interface IAmReallySimple
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple">
+            <summary>
+            Interface IAmSimple
+            </summary>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass">
+            <summary>
+            Interface IDerivedSimpleClass
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass_Static">
+            <summary>
+            Class SimpleClass_Static.
+            </summary>
+        </member>
+        <member name="M:Com.MarcusTS.SmartDI.MSTests.SimpleClass_Static.CreateSimpleInstance">
+            <summary>
+            Creates the simple instance.
+            </summary>
+            <returns>IAmSimple.</returns>
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.AnotherSimpleClass">
+            <summary>
+            Class AnotherSimpleClass.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.DerivedSimpleClass">
+            <summary>
+            Class DerivedSimpleClass.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IDerivedSimpleClass" />
+        </member>
+        <member name="T:Com.MarcusTS.SmartDI.MSTests.SimpleClass">
+            <summary>
+            Class SimpleClass.
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            Implements the <see cref="T:Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
+            </summary>
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmSimple" />
+            <seealso cref="T:Com.MarcusTS.SmartDI.MSTests.IAmReallySimple" />
+        </member>
+        <member name="P:Com.MarcusTS.SmartDI.MSTests.SimpleClass.HasBeenSet">
+            <summary>
+            Gets or sets a value indicating whether this instance has been set.
+            </summary>
+            <value><c>true</c> if this instance has been set; otherwise, <c>false</c>.</value>
+        </member>
+    </members>
+</doc>
