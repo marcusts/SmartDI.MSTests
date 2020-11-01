@@ -24,6 +24,8 @@
 // SOFTWARE.
 // *********************************************************************************
 
+using Com.MarcusTS.SmartDI.LifecycleAware;
+
 namespace Com.MarcusTS.SmartDI.MSTests
 {
    using Com.MarcusTS.SharedUtils.Utils;
@@ -43,7 +45,7 @@ namespace Com.MarcusTS.SmartDI.MSTests
       /// <summary>
       ///    The container
       /// </summary>
-      private readonly ISmartDIContainerForUnitTesting _container = new SmartDIContainerForUnitTesting();
+      protected readonly ISmartDIContainerWithLifecycleForUnitTesting _container = new SmartDIContainerWithLifecycleForUnitTesting();
 
       /// <summary>
       ///    Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
