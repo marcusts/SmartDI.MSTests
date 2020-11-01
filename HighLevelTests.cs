@@ -43,8 +43,6 @@ namespace Com.MarcusTS.SmartDI.MSTests
    [TestClass]
    public class HighLevelTests : LowLevelTests, IDisposable
    {
-<<<<<<< HEAD
-=======
       // This container provides lifecycle support
       /// <summary>
       /// The container
@@ -52,7 +50,6 @@ namespace Com.MarcusTS.SmartDI.MSTests
       private readonly ISmartDIContainerWithLifecycleForUnitTesting _container =
          new SmartDIContainerWithLifecycleForUnitTesting();
 
->>>>>>> cae8d63ffd44c40adcfcfc2808c6012236ec5637
       /// <summary>
       /// Note that we did not test the DerivedContentViewWithLifecycle,
       /// as it is identical to the page other than the fact that it derived a different base class.
